@@ -1,0 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+:root {
+      --fs-primary: #FFA500;
+      --fs-secondary: #000000;
+      --fs-blue: #1D4F91;
+      --fs-dark-blue: #002855;
+      --fs-dark: #333333;
+      --fs-gray: #636466;
+      --fs-middle-gray: #C7C8CA;
+      --fs-gray-light: #F1F2F2;
+      --fs-white: #ffffff;
+      --fs-green: #00BB34;
+      --fs-red: #FF0000;
+      --fs-font-primary: "Raleway", sans-serif;
+      --fs-font-secondary: "Bebas Neue",  sans-serif;
+}
+.button-submit {
+    background-color: #FFA500;
+    border: 1px solid #FFA500;
+    border-radius: 4px;
+    padding: 0.4rem 1.25rem;
+    font-size: 15px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+    .button-submit enabled:hover {
+        background: #FFA500;
+        color: #ffffff;
+        border-color: #FFA500;
+    }
+.button-reset-back {
+    background-color: black;
+    border: 1px solid black;
+    color : white;
+    border-radius: 4px;
+    padding: 0.4rem 1.25rem;
+    font-size: 15px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+    .button-reset-back enabled:hover {
+        background: black;
+        color: #ffffff;
+        border-color: black;
+    }
+
+.button-create 
+{
+    background-color: var(--fs-primary);
+    border: 1px solid var(--fs-primary);
+    border-radius: 4px;
+    padding: 0.4rem 1rem;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 1.3;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+    .button-create enabled:hover {
+        background: var(--fs-primary);
+        color: #ffffff;
+        border-color: var(--fs-primary);
+    }
+
+
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: 0 auto;
+}
+.input-title {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: 0 auto;
+}

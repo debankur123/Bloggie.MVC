@@ -1,0 +1,74 @@
+﻿using System.Data;
+using Bloggie.Web.Models.Entity;
+using Bloggie.Web.Models.Request;
+using Bloggie.Web.Models.Response;
+using Bloggie.Web.Repository.DatabaseContext;
+using Microsoft.Data.SqlClient;
+
+namespace Bloggie.Web.Services
+{
+    public class BlogService
+    {
+        private readonly IConfiguration _configuration;
+        private readonly BloggieWebContext _dbContext;
+        public BlogService(IConfiguration configuration, BloggieWebContext webContext)
+        {
+            _configuration = configuration;
+            _dbContext = webContext;
+        }
+
+        public async Task<dynamic> CreateTags(TagRequest _request)
+        {
+            try
+            {
+                BloggieSTag tag = new BloggieSTag
+                {
+                    Name = _request.Name,
+                    DisplayName = _request.DisplayName,
+                    Active = true
+                };
+                _dbContext.BloggieSTags.Add(tag);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<List<GetTags>> GetTags(long? TagId = 0)
+        {
+            SqlConnection con = new SqlConnection(Commonservice.getConnectionString());
+            await con.OpenAsync();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("USP_BLOGGIE_G_GetTags", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TagId", TagId);
+                List<GetTags> tagsList = new List<GetTags>();
+                DataTable dt = new DataTable();
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+                foreach (DataRow row in dt.Rows)
+                {
+                    GetTags result = new GetTags
+                    {
+                        TagName = row["TagName"].ToString(),
+                        DisplayName = row["DisplayName"].ToString(),
+                        Active = (bool)row["Active"]
+                    };
+                    tagsList.Add(result);
+                }
+                return tagsList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                await con.CloseAsync();
+            }
+        }
+    }
+}

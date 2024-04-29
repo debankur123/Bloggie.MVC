@@ -1,0 +1,12 @@
+﻿Http Configuration : 
+"http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5263",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+
+dotnet ef DbContext Scaffold "Server=DESKTOP-DIGB9OQ;Database=Bloggie.Web;User=sa;Password=Debankur@123;Trusted_Connection=true;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --context-dir  Repository/DatabaseContext --output-dir Models/Entity --force

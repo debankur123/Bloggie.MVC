@@ -1,0 +1,74 @@
+﻿@model List<Bloggie.Web.Models.Response.GetTags>
+@{
+    int SerialNo = 1;
+}
+
+<style>
+    .table-custom {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+        .table-custom th,
+        .table-custom td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .table-custom th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table-custom tbody tr:nth-child(even) {
+            background-color: #e9ecef;
+        }
+
+</style>
+
+<div class="bg-secondary bg-opacity-10 py-2 input-title mb-3">
+    <div class="container">
+        <h1 class="mb-6">Show Tags (Admin Panel)</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive mt-5">
+            <table class="table table-striped table-hover  text-center">
+                <thead class="button-submit">
+                    <tr>
+                        <th>No</th>
+                        <th>Tag Name</th>
+                        <th>Display Name</th>
+                        <th>Action Area</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in Model)
+                    {
+                        <tr>
+                            <td>@SerialNo</td>
+                            <td>@x.TagName</td>
+                            <td>@x.DisplayName</td>
+                            <td>
+                                <a asp-area="" asp-controller="AdminTags" asp-action="">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        SerialNo++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted text-center mt-5">Oops - No Tags to display!</p>
+    }
+</div>
+
