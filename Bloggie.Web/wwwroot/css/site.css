@@ -1,20 +1,20 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 :root {
-      --fs-primary: #FFA500;
-      --fs-secondary: #000000;
-      --fs-blue: #1D4F91;
-      --fs-dark-blue: #002855;
-      --fs-dark: #333333;
-      --fs-gray: #636466;
-      --fs-middle-gray: #C7C8CA;
-      --fs-gray-light: #F1F2F2;
-      --fs-white: #ffffff;
-      --fs-green: #00BB34;
-      --fs-red: #FF0000;
-      --fs-font-primary: "Raleway", sans-serif;
-      --fs-font-secondary: "Bebas Neue",  sans-serif;
+    ï¿½ --fs-primary: #FFA500;
+    ï¿½ --fs-secondary: #000000;
+    ï¿½ --fs-blue: #1D4F91;
+    ï¿½ --fs-dark-blue: #002855;
+    ï¿½ --fs-dark: #333333;
+    ï¿½ --fs-gray: #636466;
+    ï¿½ --fs-middle-gray: #C7C8CA;
+    ï¿½ --fs-gray-light: #F1F2F2;
+    ï¿½ --fs-white: #ffffff;
+    ï¿½ --fs-green: #00BB34;
+    ï¿½ --fs-red: #FF0000;
+    ï¿½ --fs-font-primary: "Raleway", sans-serif;
+    ï¿½ --fs-font-secondary: "Bebas Neue", ï¿½sans-serif;
 }
 .button-submit {
     background-color: #FFA500;
@@ -91,7 +91,9 @@ html {
 
 body {
     margin-bottom: 60px;
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 .navbar-brand {
     position: absolute;

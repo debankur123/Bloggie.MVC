@@ -51,6 +51,23 @@ namespace Bloggie.Web.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult EditTags(){
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditTags(TagRequest _request){
+            var existingTag = _dbcontext.BloggieSTags.FirstOrDefault(x=>x.Id == _request.Id);
+            if (existingTag != null)
+            {
+                existingTag.Name = _request.Name;
+                existingTag.DisplayName = _request.DisplayName;
+                existingTag.Active = true;
+                await _dbcontext.SaveChangesAsync();
+                return RedirectToAction("GetTagDetails");
+            }
+            return RedirectToAction("GetTagDetails");
+        }
+        [HttpGet]
         public async Task<IActionResult> GetTagDetails(long? TagId=0){
             var tags = await _service.GetTags(TagId);
             return View(tags);
