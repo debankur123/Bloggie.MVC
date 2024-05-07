@@ -1,8 +1,39 @@
-﻿
+﻿@model Bloggie.Web.Models.Request.TagRequest
 @{
 }
 <div class="bg-secondary bg-opacity-10 py-2 input-title">
     <div class="container">
         <h1 class="">Tags-Admin</h1>
     </div>
+</div>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    @if(Model != null)
+    {
+        <form method="post" class="p-5 rounded shadow-lg bg-light">
+            <h2 class="text-center mb-4">Edit Tag</h2>
+            <div class="mb-3">
+                <label class="form-label" for="name">Tag Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Tag Name" asp-for="Name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="displayname">Display Name</label>
+                <input type="text" class="form-control" id="displayname" placeholder="Enter Display Name"
+                       asp-for="DisplayName">
+            </div>
+            <div class="text-center">
+                @* <button type="submit" class="button-reset-back" asp-controller="AdminTags" asp-action="GetTagDetails">Go
+            Back</button> *@
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="bi bi-floppy-fill">
+                        <span style="margin-left: 5px;">SAVE</span>
+                    </i>
+                </button>
+            </div>
+        </form>
+    }
+    else
+    {
+        <p>Tag not found!</p>
+    }
+
 </div>

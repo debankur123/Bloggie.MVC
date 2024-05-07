@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index">
-                    Bloggie.Web
+                    Blogging.Web
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="AdminTags" asp-action="CreateTags">Add Tags</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="AdminTags" asp-action="GetTagDetails">Show Tags</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="BlogPost" asp-action="CreateBlogPost">Create Blog(s)</a></li>
                             </ul>
                         </li>
                     </ul>

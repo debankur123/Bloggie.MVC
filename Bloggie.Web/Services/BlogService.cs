@@ -17,14 +17,14 @@ namespace Bloggie.Web.Services
             _dbContext = webContext;
         }
 
-        public async Task<dynamic> CreateTags(TagRequest _request)
+        public async Task<dynamic> CreateTags(TagRequest request)
         {
             try
             {
                 BloggieSTag tag = new BloggieSTag
                 {
-                    Name = _request.Name,
-                    DisplayName = _request.DisplayName,
+                    Name = request.Name,
+                    DisplayName = request.DisplayName,
                     Active = true
                 };
                 _dbContext.BloggieSTags.Add(tag);
@@ -36,7 +36,7 @@ namespace Bloggie.Web.Services
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<List<GetTags>> GetTags(long? TagId = 0)
+        public async Task<List<GetTags>> GetTags(long? TagId=0)
         {
             SqlConnection con = new SqlConnection(Commonservice.getConnectionString());
             await con.OpenAsync();
@@ -45,14 +45,18 @@ namespace Bloggie.Web.Services
                 SqlCommand cmd = new SqlCommand("USP_BLOGGIE_G_GetTags", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@TagId", TagId);
-                List<GetTags> tagsList = new List<GetTags>();
-                DataTable dt = new DataTable();
+                List<GetTags> tagsList = [];
+                var dt = new DataTable();
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 sda.Fill(dt);
-                foreach (DataRow row in dt.Rows)
+                // tagsList.AddRange(from DataRow row in dt.Rows select new GetTags { TagId = (long)row["TagId"], TagName = row["TagName"].ToString(), DisplayName = row["DisplayName"].ToString(), Active = (bool)row["Active"] });
+                // return tagsList;
+                for (var index = 0; index < dt.Rows.Count; index++)
                 {
-                    GetTags result = new GetTags
+                    var row = dt.Rows[index];
+                    var result = new GetTags
                     {
+                        TagId = (long)row["TagId"],
                         TagName = row["TagName"].ToString(),
                         DisplayName = row["DisplayName"].ToString(),
                         Active = (bool)row["Active"]

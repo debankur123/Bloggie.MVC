@@ -75,19 +75,16 @@
                             <td>@x.TagName</td>
                             <td>@x.DisplayName</td>
                             <td>
-                                <a asp-area="" asp-controller="AdminTags" asp-action="EditTags">
-                                    <span class="material-symbols-outlined">
+                                <a asp-area="" asp-controller="AdminTags" asp-action="EditTags" asp-route-TagId="@x.TagId">
+                                    <span class="material-symbols-outlined text-success">
                                         edit_square
                                     </span>
                                 </a>
-                            </td>
-                            @* <td>
-                                <a asp-area="" asp-controller="AdminTags" asp-action="">
-                                    <span class="material-symbols-outlined">
-                                        delete
-                                    </span>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="@("#DeleteProduct-" + x.TagId)" data-bs-url="@Url.Action($"DeleteTag/{x.TagId}")">
+                                    <span class="material-symbols-outlined text-danger">delete</span>
                                 </a>
-                            </td> *@
+                                @await Html.PartialAsync("DeleteTag",x)
+                            </td>
                         </tr>
                         SerialNo++;
                     }
@@ -100,3 +97,4 @@
         <p class="text-muted text-center mt-5">Oops - No Tags to display!</p>
     }
 </div>
+
