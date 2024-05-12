@@ -1,11 +1,107 @@
-﻿
-
+﻿@model Bloggie.Web.Models.Request.BlogPostRequest
 @{
-    
+
 }
 
-<div class="bg-secondary bg-opacity-10 py-2 input-title">
+<div class="bg-secondary bg-opacity-10 py-2">
     <div class="container">
-        <h1 class="">Create Blogs(Admin Panel)</h1>
+        <h1 class="mb-0 text-center">Create Blogs (Admin Panel)</h1>
     </div>
 </div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-container">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="heading" class="form-label">Heading</label>
+                        <input type="text" class="form-control" id="heading" name="heading" placeholder="Enter heading" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pageTitle" class="form-label">Page Title</label>
+                        <input type="text" class="form-control" id="pageTitle" name="pageTitle" placeholder="Enter page title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" name="content" placeholder="Enter content" rows="5" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="shortDescription" class="form-label">Short Description</label>
+                        <input type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="blogImageURL" class="form-label">Blog Image URL</label>
+                        <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Enter blog image URL" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urlHandle" class="form-label">URL Handle</label>
+                        <input type="text" class="form-control" id="urlHandle" name="urlHandle" placeholder="Enter URL handle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publishedDate" class="form-label">Date Of Publish</label>
+                        <input type="date" class="form-control" id="publishedDate" name="publishedDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" required>
+                    </div>
+                    @* <div class="mb-3"> *@
+                    @*     <label for="author" class="form-label">Select Tag(s)</label> *@
+                    @*     $1$ <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" required> #1# *@
+                    @*     $1$ <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTagIds"></select> #1# *@
+                    @*      *@
+                    @* </div> *@
+                    <div class="mb-3">
+                        <label for="selectedTags" class="form-label">Select Tag(s)</label>
+                        <select class="form-select" id="selectedTags" multiple="multiple" name="selectedTags[]">
+                            @foreach (var tag in Model.Tags)
+                            {
+                                <option value="@tag.Value">@tag.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="isVisible" name="isVisible">
+                        <label class="form-check-label" for="isVisible">
+                            Is Visible?
+                        </label>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success btn-submit">
+                            <i class="bi bi-floppy-fill"></i>
+                            <span class="ms-2">SUBMIT</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .form-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .btn-submit {
+        width: 150px;
+    }
+</style>
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.form-select').select2();
+        });
+    </script>
+}
+
+
