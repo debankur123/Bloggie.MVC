@@ -1,50 +1,51 @@
 ﻿@model Bloggie.Web.Models.Request.BlogPostRequest
 @{
-
 }
 
 <div class="bg-secondary bg-opacity-10 py-2">
     <div class="container">
-        <h1 class="mb-0 text-center">Create Blog (Admin Panel)</h1>
+        <h1 class="mb-0 text-center">Edit Blog Post(Admin Panel)</h1>
     </div>
 </div>
 
 <div class="container py-5">
-    <div class="row justify-content-center">
+    @if (Model != null)
+    {
+        <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="form-container">
                 <form method="post">
                     <div class="mb-3">
                         <label for="heading" class="form-label">Heading</label>
-                        <input type="text" class="form-control" id="heading" name="heading" placeholder="Enter heading" required>
+                        <input type="text" class="form-control" id="heading" name="heading" placeholder="Enter heading" asp-for="Heading" required>
                     </div>
                     <div class="mb-3">
                         <label for="pageTitle" class="form-label">Page Title</label>
-                        <input type="text" class="form-control" id="pageTitle" name="pageTitle" placeholder="Enter page title" required>
+                        <input type="text" class="form-control" id="pageTitle" name="pageTitle" placeholder="Enter page title" asp-for="PageTitle" required>
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
-                        <textarea class="form-control" id="content" name="content" placeholder="Enter content" rows="5" required></textarea>
+                        <textarea class="form-control" id="content" name="content" placeholder="Enter content" rows="5" asp-for="Content" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="shortDescription" class="form-label">Short Description</label>
-                        <input type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" required>
+                        <input type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" asp-for="ShortDescription" required>
                     </div>
                     <div class="mb-3">
                         <label for="blogImageURL" class="form-label">Blog Image URL</label>
-                        <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Enter blog image URL" required>
+                        <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Enter blog image URL" asp-for="BlogImageUrl" required>
                     </div>
                     <div class="mb-3">
                         <label for="urlHandle" class="form-label">URL Handle</label>
-                        <input type="text" class="form-control" id="urlHandle" name="urlHandle" placeholder="Enter URL handle" required>
+                        <input type="text" class="form-control" id="urlHandle" name="urlHandle" placeholder="Enter URL handle" asp-for="UrlHandle" required>
                     </div>
                     <div class="mb-3">
                         <label for="publishedDate" class="form-label">Date Of Publish</label>
-                        <input type="date" class="form-control" id="publishedDate" name="publishedDate" required>
+                        <input type="date" class="form-control" id="publishedDate" name="publishedDate" asp-for="PublishedDate" value="@Model.PublishedDate?.ToString("yyyy-MM-dd")" required>
                     </div>
                     <div class="mb-3">
                         <label for="author" class="form-label">Author</label>
-                        <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" required>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" asp-for="Author" required>
                     </div>
                     @* <div class="mb-3"> *@
                     @*     <label for="author" class="form-label">Select Tag(s)</label> *@
@@ -54,7 +55,7 @@
                     @* </div> *@
                     <div class="mb-3">
                         <label for="selectedTags" class="form-label">Select Tag(s)</label>
-                        <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]">
+                        <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]" asp-for="SelectedTagIds">
                             @foreach (var tag in Model.Tags)
                             {
                                 <option value="@tag.Value">@tag.Text</option>
@@ -65,7 +66,7 @@
                         <label class="form-check-label" for="isVisible">
                             Is Visible?
                         </label>
-                        <input class="form-check-input" type="checkbox" id="isVisible" name="isVisible" value="true">
+                        <input class="form-check-input" type="checkbox" id="isVisible" name="isVisible" value="true" asp-for="IsVisible">
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-success btn-submit">
@@ -77,6 +78,11 @@
             </div>
         </div>
     </div>
+    }
+    else
+    {
+        <p>No Blog Found!</p>
+    }
 </div>
 <style>
     body {
@@ -110,8 +116,5 @@
                 $(this).val($(this).val().toLowerCase());
             });
         });
-
     </script>
 }
-
-

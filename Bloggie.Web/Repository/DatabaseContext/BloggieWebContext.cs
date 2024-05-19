@@ -35,12 +35,6 @@ public partial class BloggieWebContext : DbContext
             entity.ToTable("Bloggie_M_Tags");
 
             entity.Property(e => e.BlogHdrid).HasColumnName("BlogHDRId");
-            entity.Property(e => e.DisplayName)
-                .HasMaxLength(250)
-                .IsUnicode(false);
-            entity.Property(e => e.Name)
-                .HasMaxLength(250)
-                .IsUnicode(false);
         });
 
         modelBuilder.Entity<BloggieSTag>(entity =>

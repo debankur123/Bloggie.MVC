@@ -4,6 +4,7 @@ namespace Bloggie.Web.Models.Request;
 
 public class BlogPostRequest
 {
+    public long BlogId             { get; set; }
     public string Heading          { get; init; }
     public string PageTitle        { get; init; }
     public string Content          { get; init; }
@@ -11,6 +12,7 @@ public class BlogPostRequest
     public string BlogImageUrl     { get; init; }
     public string UrlHandle        { get; init; }
     public DateTime? PublishedDate { get; init; }
+    public string PublishedDateS   { get; set; }
     public string Author           { get; init; }
     public bool IsVisible          { get; init; }
     public DateTime? CreatedDate   { get; init; }

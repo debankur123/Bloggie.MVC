@@ -7,15 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Controllers
 {
-    public class AdminTagsController : Controller
+    public class AdminTagsController(BlogService service, BloggieWebContext context) : Controller
     {
-        private readonly BlogService _service;
-        private readonly BloggieWebContext _dbcontext;
-        public AdminTagsController(BlogService service,BloggieWebContext context)
-        {
-            _service = service;
-            _dbcontext = context;
-        }
         [HttpGet]
         public IActionResult CreateTags()
         {
@@ -33,8 +26,8 @@ namespace Bloggie.Web.Controllers
                     DisplayName = request.DisplayName,
                     Active = true
                 };
-                await _dbcontext.BloggieSTags.AddAsync(tags);
-                await _dbcontext.SaveChangesAsync();
+                await context.BloggieSTags.AddAsync(tags);
+                await context.SaveChangesAsync();
                 return RedirectToAction("GetTagDetails");
             }
             catch (Exception ex)
@@ -44,7 +37,7 @@ namespace Bloggie.Web.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> EditTags(long TagId){
-            var tag = await _dbcontext.BloggieSTags.FirstOrDefaultAsync(x=> x.Id == TagId && x.Active == true);
+            var tag = await context.BloggieSTags.FirstOrDefaultAsync(x=> x.Id == TagId && x.Active == true);
             try
             {
                 if (tag == null) return View(null);
@@ -62,7 +55,7 @@ namespace Bloggie.Web.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> EditTags(long TagId,TagRequest request){
-            var existingTag = await _dbcontext.BloggieSTags.FirstOrDefaultAsync(x=>x.Id == TagId);
+            var existingTag = await context.BloggieSTags.FirstOrDefaultAsync(x=>x.Id == TagId);
             try
             {
                 if (existingTag != null)
@@ -70,7 +63,7 @@ namespace Bloggie.Web.Controllers
                     existingTag.Name = request.Name;
                     existingTag.DisplayName = request.DisplayName;
                     existingTag.Active = true;
-                    await _dbcontext.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                     return RedirectToAction("GetTagDetails");
                 }
                 return RedirectToAction("EditTags", new { TagId = TagId });
@@ -82,25 +75,25 @@ namespace Bloggie.Web.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> GetTagDetails(long? Id=0){
-            var tags = await _service.GetTags(Id);
+            var tags = await service.GetTags(Id);
             return View(tags);
         }
         [HttpGet]
         public IActionResult DeleteTag(long TagId)
         {
-            var tag = _dbcontext.BloggieSTags.FirstOrDefault(x => x.Id == TagId && x.Active == true);
+            var tag = context.BloggieSTags.FirstOrDefault(x => x.Id == TagId && x.Active == true);
             return PartialView("DeleteTag", tag);
         }
         [HttpPost]
         public async Task<IActionResult> DeleteTag(long TagId, TagRequest request) {
-            var existingTag = await _dbcontext.BloggieSTags.FirstOrDefaultAsync(x => x.Id == TagId);
+            var existingTag = await context.BloggieSTags.FirstOrDefaultAsync(x => x.Id == TagId);
             try
             {
                 if (existingTag != null)
                 {
                     existingTag.Active = false;
                 }
-                await _dbcontext.SaveChangesAsync();
+                await context.SaveChangesAsync();
                 return RedirectToAction("GetTagDetails");
             }
             catch (Exception ex)
