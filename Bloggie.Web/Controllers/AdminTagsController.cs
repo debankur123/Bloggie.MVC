@@ -15,12 +15,12 @@ namespace Bloggie.Web.Controllers
             return View();
         }
         [HttpPost]
-        [ActionName("CreateTags")]
-        public async Task<ActionResult> CreateTags(TagRequest request)
+        //[ActionName("CreateTags")]
+        public async Task<IActionResult> CreateTags(TagRequest request)
         {
             try
             {
-                BloggieSTag tags = new BloggieSTag()
+                var tags = new BloggieSTag()
                 {
                     Name = request.Name,
                     DisplayName = request.DisplayName,

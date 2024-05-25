@@ -4,7 +4,7 @@ namespace Bloggie.Web.Models.Request;
 
 public class BlogPostRequest
 {
-    public long BlogId             { get; set; }
+    public long Id                 { get; set; }
     public string Heading          { get; init; }
     public string PageTitle        { get; init; }
     public string Content          { get; init; }

@@ -109,3 +109,28 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin: 0 auto;
 }
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.btn-create {
+    background-color: #28a745;
+    border: none;
+    position: absolute;
+    right: 0;
+}
+.btn-create:hover {
+    background-color: #218838;
+}
+.btn {
+    display: inline-block;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+}

@@ -4,30 +4,27 @@ using Bloggie.Web.Models.Request;
 using Bloggie.Web.Models.Response;
 using Bloggie.Web.Repository.DatabaseContext;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Services
 {
-    public class BlogService
+    public class BlogService(IConfiguration configuration, BloggieWebContext webContext)
     {
-        private readonly IConfiguration _configuration;
-        private readonly BloggieWebContext _dbContext;
-        public BlogService(IConfiguration configuration, BloggieWebContext webContext)
-        {
-            _configuration = configuration;
-            _dbContext = webContext;
-        }
+        private readonly IConfiguration _configuration = configuration;
+        private static readonly char[] Separator = new[] { ',' };
+
         public async Task<dynamic> CreateTags(TagRequest request)
         {
             try
             {
-                BloggieSTag tag = new BloggieSTag
+                var tag = new BloggieSTag
                 {
                     Name = request.Name,
                     DisplayName = request.DisplayName,
                     Active = true
                 };
-                _dbContext.BloggieSTags.Add(tag);
-                await _dbContext.SaveChangesAsync();
+                webContext.BloggieSTags.Add(tag);
+                await webContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -37,7 +34,7 @@ namespace Bloggie.Web.Services
         }
         public async Task<List<GetTags>> GetTags(long? TagId=0)
         {
-            SqlConnection con = new SqlConnection(Commonservice.getConnectionString());
+            var con = new SqlConnection(Commonservice.getConnectionString());
             await con.OpenAsync();
             try
             {
@@ -78,7 +75,7 @@ namespace Bloggie.Web.Services
         {
             try
             {
-                BloggieTBlogDtl obj = new BloggieTBlogDtl
+                var obj = new BloggieTBlogDtl
                 {
                     Heading           = request.Heading,
                     PageTitle         = request.PageTitle,
@@ -93,28 +90,69 @@ namespace Bloggie.Web.Services
                     //CreatedBy = request.CreatedBy,
                     CreatedDate       = Commonservice.getIndianDatetime()
                 };
-                await _dbContext.BloggieTBlogDtls.AddAsync(obj);
-                await _dbContext.SaveChangesAsync();
-                if (request.SelectedTagIds != null)
+                await webContext.BloggieTBlogDtls.AddAsync(obj);
+                await webContext.SaveChangesAsync();
+                if (request.SelectedTagIds == null) return request;
+                for (var idx = 0; idx < request.SelectedTagIds.Length; idx++)
                 {
-                    for (int idx = 0; idx < request.SelectedTagIds.Count(); idx++)
+                    var tagIds = request.SelectedTagIds[idx];
+                    var tags = new BloggieMTag()
                     {
-                        long TagIds = request.SelectedTagIds[idx];
-                        BloggieMTag tags = new BloggieMTag()
-                        {
-                            BlogHdrid = obj.Id,
-                            TagId     = TagIds,
-                            Active    = true,
-                        };
-                        await _dbContext.BloggieMTags.AddAsync(tags);
-                    }
-                    await _dbContext.SaveChangesAsync();
+                        BlogHdrid = obj.Id,
+                        TagId     = tagIds,
+                        Active    = true,
+                    };
+                    await webContext.BloggieMTags.AddAsync(tags);
                 }
+                await webContext.SaveChangesAsync();
                 return request;
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+        public async Task<BlogPostRequest> EditBlogPost(BlogPostRequest request)
+        {
+            try
+            {
+                var blogToEdit = await webContext.BloggieTBlogDtls
+                    .FirstOrDefaultAsync(x => x.Id == request.Id && x.Active == true);
+                if (blogToEdit == null) return request;
+                blogToEdit.Heading = request.Heading;
+                blogToEdit.PageTitle = request.PageTitle;
+                blogToEdit.Content = request.Content;
+                blogToEdit.ShortDescription = request.ShortDescription;
+                blogToEdit.BlogImageUrl = request.BlogImageUrl;
+                blogToEdit.Urlhandle = request.UrlHandle;
+                blogToEdit.PublishedDate = request.PublishedDate;
+                blogToEdit.Author = request.Author;
+                blogToEdit.IsVisible = request.IsVisible;
+                blogToEdit.Active = true;
+                blogToEdit.UpdatedDate = Commonservice.getIndianDatetime();
+                await webContext.SaveChangesAsync();
+                var existingTagOfBlog = await webContext.BloggieMTags
+                    .Where(a => a.BlogHdrid == blogToEdit.Id && a.Active==true).ToListAsync();
+                foreach (var item in existingTagOfBlog)
+                {
+                    item.Active = false;
+                }
+                foreach (var tagIds in request.SelectedTagIds)
+                {
+                    var tags = new BloggieMTag
+                    {
+                        BlogHdrid = blogToEdit.Id,
+                        TagId = tagIds,
+                        Active = true
+                    };
+                    await webContext.BloggieMTags.AddAsync(tags);
+                }
+                await webContext.SaveChangesAsync();
+                return request;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("An error occurred while processing the request" + e.Message);
             }
         }
         public static async Task<IEnumerable<BlogDetailsResponse>> GetBlogDetails(long? BlogId=0)
@@ -133,7 +171,7 @@ namespace Bloggie.Web.Services
                 {
                     var blogDetailsResponse = new BlogDetailsResponse
                     {
-                        BlogId           = reader["BlogId"] != DBNull.Value ? (long)reader["BlogId"] : 0,
+                        Id               = reader["Id"] != DBNull.Value ? (long)reader["Id"] : 0,
                         Heading          = reader["Heading"].ToString(),
                         PageTitle        = reader["PageTitle"].ToString(),
                         Content          = reader["Content"].ToString(),
@@ -146,7 +184,7 @@ namespace Bloggie.Web.Services
                         IsVisible        = reader["IsVisible"] != DBNull.Value && (bool)reader["IsVisible"],
                         CreatedDateS     = reader["CreatedDateS"].ToString(),
                         UpdatedDateS     = reader["UpdatedDateS"].ToString(),
-                        TagNames         = reader["TagNames"].ToString()?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                        TagNames         = reader["TagNames"].ToString()?.Split(Separator, StringSplitOptions.RemoveEmptyEntries)
                     };
                     blogDetailsList.Add(blogDetailsResponse);
                 }
