@@ -14,11 +14,11 @@
         public string Author           { get; set; }
         public bool IsVisible          { get; set; }
         public DateTime? CreatedDate   { get; set; }
-        public String CreatedDateS     { get; set; }
+        public string CreatedDateS     { get; set; }
         public DateTime? UpdatedDate   { get; set; }
         public string UpdatedDateS     { get; set; }
         public int? UpdatedBy          { get; set; }
         public bool? Active            { get; set; }
-        public String[] TagNames       { get; set; }
+        public string[] TagNames       { get; set; }
     }
 }

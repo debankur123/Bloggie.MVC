@@ -11,7 +11,7 @@
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="form-container">
                 <form method="post" asp-action="CreateBlogPost">
                     <div class="mb-3">
@@ -31,8 +31,15 @@
                         <input type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" required>
                     </div>
                     <div class="mb-3">
-                        <label for="blogImageURL" class="form-label">Blog Image URL</label>
-                        <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Enter blog image URL" required>
+                        <label for="featuredImageUpload" class="form-label">Upload File</label>
+                        <input type="file" class="form-control" id="featuredImageUpload" placeholder="Upload Files">
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                        <label for="blogImageURL" class="form-label me-2">Image URL</label>
+                        <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Image Url" required>
+                        <a id="viewImageLink" href="#" class="ms-2" target="_blank" style="display: none;">
+                            <i class="bi bi-cloud-download-fill"></i>
+                        </a>
                     </div>
                     <div class="mb-3">
                         <label for="urlHandle" class="form-label">URL Handle</label>
@@ -57,7 +64,7 @@
                         <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]">
                             @foreach (var tag in Model.Tags)
                             {
-                                <option value="@tag.Value">@tag.Text</option>
+                                <option value="@tag.Value!">@tag.Text</option>
                             }
                         </select>
                     </div>
@@ -94,8 +101,22 @@
     .btn-submit {
         width: 150px;
     }
-    input[type="text"] {
-        text-transform: lowercase;
+    /*input[type="text"] {*/
+    /*    text-transform: lowercase;*/
+    /*}*/
+    .d-flex {
+        display: flex;
+        align-items: center;
+    }
+    .ms-2 {
+        margin-left: 0.5rem;
+    }
+    .icon-link i {
+        font-size: 1.5rem;
+        color: #6c757d;
+    }
+    .icon-link i:hover {
+        color: #495057;
     }
 </style>
 @section Scripts
@@ -110,7 +131,37 @@
                 $(this).val($(this).val().toLowerCase());
             });
         });
-
+        const editor = new FroalaEditor('#content');
+        // ---------Image/File Upload process------------------------------
+        const uploadElement = document.getElementById('featuredImageUpload');
+        const uploadedImgUrl = document.getElementById('blogImageURL');
+        const viewImageLink = document.getElementById('viewImageLink');
+        async function uploadFiles(e){
+            console.log(e.target.files[0]);
+            let data = new FormData();
+            data.append('files',e.target.files[0]);
+            await fetch('/api/FileUpload/FileUpload',{
+                method : 'POST',
+                headers : {
+                    'Accept' : '*/*',
+                },
+                body : data
+            }).then(response => response.json())
+            .then(result => {
+                uploadedImgUrl.value = result.link;
+                viewImageLink.href = result.link;
+                viewImageLink.style.display = 'inline-block';
+            });
+        }
+        uploadElement.addEventListener('change',uploadFiles);
+        uploadedImgUrl.addEventListener('input', function() {
+            if (this.value) {
+                viewImageLink.href = this.value;
+                viewImageLink.style.display = 'inline-block';
+            } else {
+                viewImageLink.style.display = 'none';
+            }
+        });
     </script>
 }
 

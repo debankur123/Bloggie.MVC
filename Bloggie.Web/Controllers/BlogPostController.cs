@@ -100,4 +100,17 @@ public class BlogPostController(BlogService service, BloggieWebContext context) 
         var blog = context.BloggieTBlogDtls.FirstOrDefault(x => x.Id == Id && x.Active == true);
         return PartialView("DeleteBlogPost", blog);
     }
+
+    [HttpPost,ActionName("DeleteBlogPost")]
+    public async Task<ActionResult> DeleteBlogPost(long blogId,BlogPostRequest request)
+    {
+        var response = await service.DeleteBlogPost(blogId);
+        if (response.StatusCode == "1")
+        {
+            return RedirectToAction("BlogDetails");
+        }
+        ModelState.AddModelError("", response.StatusMessage);
+        var blog = context.BloggieTBlogDtls.FirstOrDefault(x => x.Id == blogId && x.Active == true);
+        return PartialView("DeleteBlogPost", blog);
+    }
 }

@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body text-center">
                 <form method="post" asp-action="DeleteBlogPost" asp-controller="BlogPost">
-                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="blogId" value="@Model.Id" />
                     <p class="mb-4">Are you sure you want to delete this Blog?</p>
                     <div class="text-danger">@Html.ValidationMessageFor(model => model.Id)</div>
                     <div class="modal-footer d-flex justify-content-center">

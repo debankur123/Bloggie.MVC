@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Bloggie.Web.Models;
 using Bloggie.Web.Models.Entity;
 using Bloggie.Web.Models.Request;
 using Bloggie.Web.Models.Response;
@@ -11,7 +12,7 @@ namespace Bloggie.Web.Services
     public class BlogService(IConfiguration configuration, BloggieWebContext webContext)
     {
         private readonly IConfiguration _configuration = configuration;
-        private static readonly char[] Separator = new[] { ',' };
+        private static readonly char[] Separator = new[] { '$' };
 
         public async Task<dynamic> CreateTags(TagRequest request)
         {
@@ -34,7 +35,7 @@ namespace Bloggie.Web.Services
         }
         public async Task<List<GetTags>> GetTags(long? TagId=0)
         {
-            var con = new SqlConnection(Commonservice.getConnectionString());
+            var con = new SqlConnection(Commonservice.GetConnectionString());
             await con.OpenAsync();
             try
             {
@@ -93,9 +94,8 @@ namespace Bloggie.Web.Services
                 await webContext.BloggieTBlogDtls.AddAsync(obj);
                 await webContext.SaveChangesAsync();
                 if (request.SelectedTagIds == null) return request;
-                for (var idx = 0; idx < request.SelectedTagIds.Length; idx++)
+                foreach (var tagIds in request.SelectedTagIds)
                 {
-                    var tagIds = request.SelectedTagIds[idx];
                     var tags = new BloggieMTag()
                     {
                         BlogHdrid = obj.Id,
@@ -157,7 +157,7 @@ namespace Bloggie.Web.Services
         }
         public static async Task<IEnumerable<BlogDetailsResponse>> GetBlogDetails(long? BlogId=0)
         {
-            var connection = new SqlConnection(Commonservice.getConnectionString());
+            var connection = new SqlConnection(Commonservice.GetConnectionString());
             await connection.OpenAsync();
             try
             {
@@ -195,6 +195,41 @@ namespace Bloggie.Web.Services
                 throw new Exception(ex.Message);
             }
             finally { await connection.CloseAsync(); }
+        }
+
+        public async Task<StatusResponse> DeleteBlogPost(long id)
+        {
+            try
+            {
+                var idToDelete = await webContext.BloggieTBlogDtls
+                    .FirstOrDefaultAsync(val => val.Id == id && val.Active == true);
+                if (idToDelete == null)
+                {
+                    return new StatusResponse
+                    {
+                        StatusCode = "0",
+                        StatusMessage = "Oops!-Blog Not found!"
+                    };
+                }
+                idToDelete.Active = false;
+                var tagsToDelete = await webContext.BloggieMTags.Where(val => val.BlogHdrid == id && val.Active == true).ToListAsync();
+                var index = 0;
+                while (index < tagsToDelete.Count)
+                {
+                    tagsToDelete[index].Active = false;
+                    index++;
+                }
+                await webContext.SaveChangesAsync();
+                return new StatusResponse
+                {
+                    StatusCode = "1",
+                    StatusMessage = "Blog Deleted Successfully!"
+                };
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }
