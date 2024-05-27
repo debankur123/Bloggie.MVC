@@ -1,0 +1,93 @@
+﻿@model Bloggie.Web.Models.Response.BlogDetailsResponse
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMfJt8e1r+i1IHMTZ5O/m/VZ6ZO6fVEF+JUsxZB" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha384-5fVYRYGvPqfpO9YvUzZlxdq5stF5km3I5o1IsVp2+Gxha62ZB5mlHhMkmZpbTX6" crossorigin="anonymous">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .blog-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .blog-header h2 {
+            font-weight: 700;
+            color: #343a40;
+        }
+
+    .blog-content img {
+        border-radius: 10px;
+        max-height: 400px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .badge-custom {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        border-radius: 20px;
+        margin: 2px;
+        color: #fff;
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .blog-metadata p {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+
+    .blog-metadata strong {
+        color: #343a40;
+    }
+
+    .blog-short-description {
+        margin: 20px 0;
+        font-size: 1.1rem;
+        color: #343a40;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+        color: #495057;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="blog-header">
+        <h2>@Model.Heading</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="blog-content">
+                <img src="@Model.BlogImageUrl" class="img-fluid" alt="@Model.Heading">
+                <div class="blog-metadata">
+                    <p><strong>Page Title:</strong> @Model.PageTitle</p>
+                    <p><strong>Published on:</strong> @Model.PublishedDateS</p>
+                    <p><strong>Author:</strong> @Model.Author</p>
+                    <p>
+                        <strong>Tags:</strong>
+                        @foreach (var tag in Model.TagNames)
+                        {
+                            <span class="badge badge-custom">@tag</span>
+                        }
+                    </p>
+                </div>
+                <div class="blog-short-description">
+                    @Model.ShortDescription
+                </div>
+                <div class="blog-content">
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-x6MlryVmCqcO1hrBzACPrH6N2HpECFyMzjhsfS9vJE0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kaJzOeRvA2VbS/J7CmQ5bHh0AaY9D4A5r5U/S/NpyN7v8s8psg7L5M8gSkRjXxil" crossorigin="anonymous"></script>
+}

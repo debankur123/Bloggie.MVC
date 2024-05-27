@@ -16,28 +16,28 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .table-custom th,
-    .table-custom td {
-        padding: 15px;
-        border-bottom: 1px solid #dee2e6;
-        font-weight: 500;
-        color: #212529;
-    }
+        .table-custom th,
+        .table-custom td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            font-weight: 500;
+            color: #212529;
+        }
 
-    .table-custom th {
-        background-color: #007bff;
-        color: #fff;
-        text-align: left;
-        text-transform: uppercase;
-    }
+        .table-custom th {
+            background-color: #007bff;
+            color: #fff;
+            text-align: left;
+            text-transform: uppercase;
+        }
 
-    .table-custom tbody tr:nth-child(even) {
-        background-color: #f8f9fa;
-    }
+        .table-custom tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
 
-    .table-custom tbody tr:hover {
-        background-color: #e9ecef;
-    }
+        .table-custom tbody tr:hover {
+            background-color: #e9ecef;
+        }
 
     .badge-custom {
         font-size: 90%;
@@ -53,9 +53,9 @@
         transition: color 0.3s;
     }
 
-    .action-icons a i {
-        font-size: 20px;
-    }
+        .action-icons a i {
+            font-size: 20px;
+        }
 
     .edit-icon {
         color: #007bff;
@@ -83,12 +83,25 @@
         margin: 0 auto;
         padding: 0 15px;
     }
+
     .btn-danger:hover {
         background-color: #c82333;
     }
+
     .table-container {
         position: relative;
         margin-top: 20px;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 400px; /* Adjust as necessary */
+    }
+
+    .btn-container {
+        position: sticky;
+        bottom: 0;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: right;
     }
 
 </style>
@@ -138,7 +151,7 @@
                                         <i class="bi bi-trash delete-icon"></i>
                                     </a>
                                     @await Html.PartialAsync("DeleteBlogPost", x)
-                                    <a href="#">
+                                    <a asp-controller="BlogPost" asp-action="ViewBlogDetails" asp-route-BlogId="@x.Id">
                                         <i class="bi bi-eye view-icon"></i>
                                     </a>
                                 </td>
@@ -148,9 +161,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="btn-container">
-                <a class="btn btn-create" asp-area="" asp-controller="BlogPost" asp-action="CreateBlogPost"><i class="bi bi-plus-circle me-2"></i>CREATE POST</a>
-            </div>
+        </div>
+        <div class="btn-container">
+            <a class="btn btn-create" asp-area="" asp-controller="BlogPost" asp-action="CreateBlogPost"><i class="bi bi-plus-circle me-2"></i>CREATE POST</a>
         </div>
     }
     else
@@ -158,7 +171,6 @@
         <h4>
             <p class="text-muted text-center mt-5"><b>Oops - No Blogs to display!</b></p>
         </h4>
-        
     }
 </div>
 

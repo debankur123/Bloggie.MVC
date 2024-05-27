@@ -21,5 +21,5 @@ public class BlogPostRequest
     public int? UpdatedBy          { get; init; }
     public bool? Active            { get; init; }
     public IEnumerable<SelectListItem> Tags { get; init; }
-    public long[] SelectedTagIds { get; init; } = [];
+    public long[] SelectedTagIds { get; init; } =  Array.Empty<long>();
 }

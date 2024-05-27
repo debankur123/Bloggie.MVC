@@ -89,7 +89,7 @@ namespace Bloggie.Web.Services
                     IsVisible         = request.IsVisible,
                     Active            = true,
                     //CreatedBy = request.CreatedBy,
-                    CreatedDate       = Commonservice.getIndianDatetime()
+                    CreatedDate       = Commonservice.GetIndianDatetime()
                 };
                 await webContext.BloggieTBlogDtls.AddAsync(obj);
                 await webContext.SaveChangesAsync();
@@ -103,8 +103,8 @@ namespace Bloggie.Web.Services
                         Active    = true,
                     };
                     await webContext.BloggieMTags.AddAsync(tags);
+                    await webContext.SaveChangesAsync();
                 }
-                await webContext.SaveChangesAsync();
                 return request;
             }
             catch (Exception e)
@@ -129,7 +129,7 @@ namespace Bloggie.Web.Services
                 blogToEdit.Author = request.Author;
                 blogToEdit.IsVisible = request.IsVisible;
                 blogToEdit.Active = true;
-                blogToEdit.UpdatedDate = Commonservice.getIndianDatetime();
+                blogToEdit.UpdatedDate = Commonservice.GetIndianDatetime();
                 await webContext.SaveChangesAsync();
                 var existingTagOfBlog = await webContext.BloggieMTags
                     .Where(a => a.BlogHdrid == blogToEdit.Id && a.Active==true).ToListAsync();
@@ -161,8 +161,10 @@ namespace Bloggie.Web.Services
             await connection.OpenAsync();
             try
             {
-                var cmd = new SqlCommand("USP_Blogging_G_BlogDetails",connection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                var cmd = new SqlCommand("USP_Blogging_G_BlogDetails", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 cmd.Parameters.AddWithValue("@BlogId", BlogId);
                 var reader = await cmd.ExecuteReaderAsync();
                 var blogDetailsList = new List<BlogDetailsResponse>();
@@ -185,6 +187,50 @@ namespace Bloggie.Web.Services
                         CreatedDateS     = reader["CreatedDateS"].ToString(),
                         UpdatedDateS     = reader["UpdatedDateS"].ToString(),
                         TagNames         = reader["TagNames"].ToString()?.Split(Separator, StringSplitOptions.RemoveEmptyEntries)
+                    };
+                    blogDetailsList.Add(blogDetailsResponse);
+                }
+                return blogDetailsList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally { await connection.CloseAsync(); }
+        }
+
+        public static async Task<List<BlogDetailsResponse>> ViewBlogDetails(long BlogId)
+        {
+            var connection = new SqlConnection(Commonservice.GetConnectionString());
+            await connection.OpenAsync();
+            try
+            {
+                var cmd = new SqlCommand("USP_Blogging_G_BlogDetails", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@BlogId", BlogId);
+                var reader = await cmd.ExecuteReaderAsync();
+                var blogDetailsList = new List<BlogDetailsResponse>();
+                if (!reader.HasRows) return blogDetailsList;
+                while (await reader.ReadAsync())
+                {
+                    var blogDetailsResponse = new BlogDetailsResponse
+                    {
+                        Id = reader["Id"] != DBNull.Value ? (long)reader["Id"] : 0,
+                        Heading = reader["Heading"].ToString(),
+                        PageTitle = reader["PageTitle"].ToString(),
+                        Content = reader["Content"].ToString(),
+                        ShortDescription = reader["ShortDescription"].ToString(),
+                        BlogImageUrl = reader["BlogImageUrl"].ToString(),
+                        UrlHandle = reader["UrlHandle"].ToString(),
+                        PublishedDate = (DateTime)reader["PublishedDate"],
+                        PublishedDateS = reader["PublishedDateS"].ToString(),
+                        Author = reader["Author"].ToString(),
+                        IsVisible = reader["IsVisible"] != DBNull.Value && (bool)reader["IsVisible"],
+                        CreatedDateS = reader["CreatedDateS"].ToString(),
+                        UpdatedDateS = reader["UpdatedDateS"].ToString(),
+                        TagNames = reader["TagNames"].ToString()?.Split(Separator, StringSplitOptions.RemoveEmptyEntries)
                     };
                     blogDetailsList.Add(blogDetailsResponse);
                 }

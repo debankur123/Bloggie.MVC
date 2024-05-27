@@ -4,87 +4,92 @@
 
 <div class="bg-secondary bg-opacity-10 py-2">
     <div class="container">
-        <h1 class="mb-0 text-center">Edit Blog Post(Admin Panel)</h1>
+        <h1 class="mb-0 text-center">Edit Blog Post (Admin Panel)</h1>
     </div>
 </div>
 
 <div class="container py-5">
     @if (Model != null)
     {
-        <div class="row justify-content-center">
-            <div class="col-md-9">
-                <div class="form-container">
-                    <form method="post">
-                        <input type="hidden" asp-for="Id" />
-                        <div class="mb-3">
-                            <label for="heading" class="form-label">Heading</label>
-                            <input type="text" class="form-control" id="heading" name="heading" placeholder="Enter heading" asp-for="Heading" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pageTitle" class="form-label">Page Title</label>
-                            <input type="text" class="form-control" id="pageTitle" name="pageTitle" placeholder="Enter page title" asp-for="PageTitle" required>
-                        </div>
-                        <div class="mb-3">
-                           <label for="content" class="form-label">Content</label>
-                            <textarea class="form-control" id="content" name="content" placeholder="Enter content" rows="5" asp-for="Content" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="shortDescription" class="form-label">Short Description</label>
-                            <input type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" asp-for="ShortDescription" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="blogImageURL" class="form-label">Blog Image URL</label>
-                            <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Enter blog image URL" asp-for="BlogImageUrl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="urlHandle" class="form-label">URL Handle</label>
-                            <input type="text" class="form-control" id="urlHandle" name="urlHandle" placeholder="Enter URL handle" asp-for="UrlHandle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="publishedDate" class="form-label">Date Of Publish</label>
-                            <input type="date" class="form-control" id="publishedDate" name="publishedDate" asp-for="PublishedDate" value="@Model.PublishedDate?.ToString("yyyy-MM-dd")" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="author" class="form-label">Author</label>
-                            <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" asp-for="Author" required>
-                        </div>
-                        @* <div class="mb-3"> *@
-                        @*     <label for="author" class="form-label">Select Tag(s)</label> *@
-                        @*     $1$ <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" required> #1# *@
-                        @*     $1$ <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTagIds"></select> #1# *@
-                        @*      *@
-                        @* </div> *@
-                        <div class="mb-3">
-                            <label for="selectedTags" class="form-label">Select Tag(s)</label>
-                            <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]" asp-for="SelectedTagIds">
-                                @foreach (var tag in Model.Tags)
-                                {
-                                    <option value="@tag.Value">@tag.Text</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-check mb-3">
-                            <label class="form-check-label" for="isVisible">
-                                Is Visible?
-                            </label>
-                            <input class="form-check-input" type="checkbox" id="isVisible" name="isVisible" value="true" asp-for="IsVisible">
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-dark btn-submit">
-                                <i class="bi bi-floppy-fill"></i>
-                                <span class="ms-2">SAVE</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="form-container">
+                <form method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="mb-3">
+                        <label for="heading" class="form-label">Heading</label>
+                        <input type="text" class="form-control" id="heading" name="heading" placeholder="Enter heading" asp-for="Heading" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pageTitle" class="form-label">Page Title</label>
+                        <input type="text" class="form-control" id="pageTitle" name="pageTitle" placeholder="Enter page title" asp-for="PageTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" name="content" placeholder="Enter content" rows="5" asp-for="Content" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="shortDescription" class="form-label">Short Description</label>
+                        <input type="text" class="form-control" id="shortDescription" name="shortDescription" placeholder="Enter short description" asp-for="ShortDescription" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="featuredImageUpload" class="form-label">Upload File</label>
+                        <input type="file" class="form-control" id="featuredImageUpload" placeholder="Upload Files">
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                        <label for="blogImageURL" class="form-label me-2">Image URL</label>
+                        <input type="text" class="form-control" id="blogImageURL" name="blogImageURL" placeholder="Image Url" asp-for="BlogImageUrl" >
+                        <a id="viewImageLink" href="#" class="ms-2 icon-link" target="_blank" style="display: none;">
+                            <i class="bi bi-cloud-download-fill"></i>
+                        </a>
+                        <a id="deleteImageLink" href="javascript:void(0);" class="ms-2 icon-link" style="display: none;">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urlHandle" class="form-label">URL Handle</label>
+                        <input type="text" class="form-control" id="urlHandle" name="urlHandle" placeholder="Enter URL handle" asp-for="UrlHandle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publishedDate" class="form-label">Date Of Publish</label>
+                        <input type="date" class="form-control" id="publishedDate" name="publishedDate" asp-for="PublishedDate" value="@Model.PublishedDate?.ToString("yyyy-MM-dd")" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name" asp-for="Author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selectedTags" class="form-label">Select Tag(s)</label>
+                        <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]" asp-for="SelectedTagIds">
+                            @foreach (var tag in Model.Tags)
+                            {
+                                <option value="@tag.Value">@tag.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+                        <label class="form-check-label" for="isVisible">
+                            Is Visible?
+                        </label>
+                        <input class="form-check-input" type="checkbox" id="isVisible" name="isVisible" value="true" asp-for="IsVisible">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark btn-submit">
+                            <i class="bi bi-floppy-fill"></i>
+                            <span class="ms-2">SAVE</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
     }
     else
     {
-        <p>No Blog Found!</p>
+    <p>No Blog Found!</p>
     }
 </div>
+
 <style>
     body {
         background-color: #f8f9fa;
@@ -105,39 +110,100 @@
         width: 150px;
     }
 
-    input[type="text"] {
-        text-transform: lowercase;
+    .d-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .ms-2 {
+        margin-left: 0.5rem;
+    }
+
+    .icon-link i {
+        font-size: 1.5rem;
+        color: #6c757d;
+    }
+
+    .icon-link i:hover {
+        color: #495057;
     }
 </style>
+
 @section Scripts
 {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.form-select').select2();
-        });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.form-select').select2();
+    });
 
-        $(document).ready(function () {
-            $('input[type="text"]').on('input', function () {
-                $(this).val($(this).val().toLowerCase());
+    var editor = new FroalaEditor('#content', {
+        imageUploadURL: '/api/FileUpload/FileUpload',
+        imageUploadMethod: 'POST',
+        imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif'],
+        events: {
+            'image.error': function (error, response) {
+                console.error('Image upload error', error, response);
+            },
+            'image.uploaded': function (response) {
+                console.log('Image uploaded successfully', response);
+            },
+            'image.inserted': function ($img, response) {
+                console.log('Image inserted', $img, response);
+            }
+        }
+    });
+
+    const uploadElement = document.getElementById('featuredImageUpload');
+    const uploadedImgUrl = document.getElementById('blogImageURL');
+    const viewImageLink = document.getElementById('viewImageLink');
+    const deleteImageLink = document.getElementById('deleteImageLink');
+
+    async function uploadFiles(e) {
+        console.log(e.target.files[0]);
+        let data = new FormData();
+            data.append('file', e.target.files[0]);
+        //data.append('upload_preset', 'ml_default');
+        await fetch('/api/FileUpload/FileUpload', {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*',
+            },
+            body: data
+        }).then(response => response.json())
+            .then(result => {
+                uploadedImgUrl.value = result.link;
+                viewImageLink.href = result.link;
+                viewImageLink.style.display = 'inline-block';
+                deleteImageLink.style.display = 'inline-block';
+            }).catch(error =>{
+                console.error('Error uploading to Cloudinary:', error);
             });
-        });
-        $(document).ready(function () {
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <text>
-                    toastr.success('@TempData["SuccessMessage"]');
-            </text>
-        }
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <text>
-                    toastr.error('@TempData["ErrorMessage"]');
-            </text>
-        }
-        });
-        const editor = new FroalaEditor('#content');
+    }
 
-    </script>
+    uploadElement.addEventListener('change', uploadFiles);
+    uploadedImgUrl.addEventListener('input', function () {
+        if (this.value) {
+            viewImageLink.href = this.value;
+            viewImageLink.style.display = 'inline-block';
+            deleteImageLink.style.display = 'inline-block';
+        } else {
+            viewImageLink.style.display = 'none';
+            deleteImageLink.style.display = 'none';
+        }
+    });
 
+    deleteImageLink.addEventListener('click', function () {
+        uploadedImgUrl.value = '';
+        viewImageLink.style.display = 'none';
+        deleteImageLink.style.display = 'none';
+    });
+
+    // Show the links if the input has a value initially
+    if (uploadedImgUrl.value) {
+        viewImageLink.href = uploadedImgUrl.value;
+        viewImageLink.style.display = 'inline-block';
+        deleteImageLink.style.display = 'inline-block';
+    }
+</script>
 }

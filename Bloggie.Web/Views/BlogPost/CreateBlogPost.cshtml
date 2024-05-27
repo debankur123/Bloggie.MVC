@@ -61,10 +61,10 @@
                     @* </div> *@
                     <div class="mb-3">
                         <label for="selectedTags" class="form-label">Select Tag(s)</label>
-                        <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]">
+                        <select class="form-select" id="selectedTags" multiple="multiple" name="SelectedTagIds[]" asp-for="SelectedTagIds">
                             @foreach (var tag in Model.Tags)
                             {
-                                <option value="@tag.Value!">@tag.Text</option>
+                                <option value="@tag.Value">@tag.Text</option>
                             }
                         </select>
                     </div>
@@ -101,9 +101,6 @@
     .btn-submit {
         width: 150px;
     }
-    /*input[type="text"] {*/
-    /*    text-transform: lowercase;*/
-    /*}*/
     .d-flex {
         display: flex;
         align-items: center;
@@ -122,16 +119,26 @@
 @section Scripts
 {
     <script>
+        
         $(document).ready(function() {
             $('.form-select').select2();
         });
-
-        $(document).ready(function () {
-            $('input[type="text"]').on('input', function () {
-                $(this).val($(this).val().toLowerCase());
-            });
+        var editor = new FroalaEditor('#content', {
+            imageUploadURL: '/api/FileUpload/FileUpload',
+            imageUploadMethod: 'POST',
+            imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif'],
+            events: {
+                'image.error': function (error, response) {
+                    console.error('Image upload error', error, response);
+                },
+                'image.uploaded': function (response) {
+                    console.log('Image uploaded successfully', response);
+                },
+                'image.inserted': function ($img, response) {
+                    console.log('Image inserted', $img, response);
+                }
+            }
         });
-        const editor = new FroalaEditor('#content');
         // ---------Image/File Upload process------------------------------
         const uploadElement = document.getElementById('featuredImageUpload');
         const uploadedImgUrl = document.getElementById('blogImageURL');
@@ -139,7 +146,8 @@
         async function uploadFiles(e){
             console.log(e.target.files[0]);
             let data = new FormData();
-            data.append('files',e.target.files[0]);
+            data.append('file', e.target.files[0]);
+            //data.append('upload_preset', 'ml_default');
             await fetch('/api/FileUpload/FileUpload',{
                 method : 'POST',
                 headers : {
@@ -151,7 +159,9 @@
                 uploadedImgUrl.value = result.link;
                 viewImageLink.href = result.link;
                 viewImageLink.style.display = 'inline-block';
-            });
+            }).catch(error =>{
+                    console.error('Error uploading to Cloudinary:', error);
+                });
         }
         uploadElement.addEventListener('change',uploadFiles);
         uploadedImgUrl.addEventListener('input', function() {

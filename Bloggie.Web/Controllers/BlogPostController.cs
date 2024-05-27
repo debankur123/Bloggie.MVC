@@ -15,6 +15,18 @@ public class BlogPostController(BlogService service, BloggieWebContext context) 
         return View((List<BlogDetailsResponse>)blogDetails);
     }
     [HttpGet]
+    public async Task<ActionResult> ViewBlogDetails(long BlogId)
+    {
+        var blogDetailsList = await BlogService.ViewBlogDetails(BlogId);
+        var viewBlogDetails = blogDetailsList.FirstOrDefault();
+        if (viewBlogDetails == null)
+        {
+            return NotFound();
+        }
+        return View("ViewBlogDetails", viewBlogDetails);
+    }
+
+    [HttpGet]
     public async Task<IActionResult> CreateBlogPost(long? TagId=0)
     {
         var tags = await service.GetTags(TagId);
@@ -67,11 +79,11 @@ public class BlogPostController(BlogService service, BloggieWebContext context) 
             Tags = tags.Select(tag => new SelectListItem
                 {
                     Value = tag.TagId.ToString(),
-                    Text = tag.DisplayName
+                    Text = tag.TagName
                 }
             ),
             SelectedTagIds = blogDetail?.TagNames?.Select(t => tags.FirstOrDefault
-                (tag => tag.DisplayName == t)?.TagId ?? 0).ToArray()
+                (tag => tag.TagName == t)?.TagId ?? 0).ToArray()
         };
         return View(viewModel);
     }

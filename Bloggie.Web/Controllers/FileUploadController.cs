@@ -1,20 +1,35 @@
-﻿using System.Net;
-using Bloggie.Web.Services;
+﻿using Bloggie.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
-namespace Bloggie.Web.Controllers
+[ApiController]
+[Route("api/[controller]")]
+public class FileUploadController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class FileUploadController : ControllerBase
+    [HttpPost]
+    [Route("FileUpload")]
+    public async Task<IActionResult> UploadToCloudinaryAsync([FromForm] IFormFile file)
     {
-        [HttpPost]
-        [Route("FileUpload")]
-        public async Task<ActionResult> UploadToCloudinaryAsync(IFormFile files)
+        if (file == null)
         {
-            var uploadedDocUrl = await Commonservice.UploadToCloudinaryAsync(files);
-            if (uploadedDocUrl == null) return Problem("Something went wrong!", null, (int)HttpStatusCode.BadRequest);
+            return BadRequest("No file uploaded.");
+        }
+        try
+        {
+            var uploadedDocUrl = await Commonservice.UploadToCloudinaryAsync(file);
             return new JsonResult(new { link = uploadedDocUrl });
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Problem($"Error occurred: {ex.Message}", null, (int)HttpStatusCode.InternalServerError);
+        }
+        catch (Exception ex)
+        {
+            return Problem($"Unexpected error occurred: {ex.Message}", null, (int)HttpStatusCode.InternalServerError);
         }
     }
 }
