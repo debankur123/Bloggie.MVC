@@ -16,35 +16,36 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-        .table-custom th,
-        .table-custom td {
-            padding: 15px;
-            border-bottom: 1px solid #dee2e6;
-            font-weight: 500;
-            color: #212529;
-        }
+    .table-custom th,
+    .table-custom td {
+        padding: 15px;
+        border-bottom: 1px solid #dee2e6;
+        font-weight: 500;
+        color: #212529;
+    }
 
-        .table-custom th {
-            background-color: #007bff;
-            color: #fff;
-            text-align: left;
-            text-transform: uppercase;
-        }
+    .table-custom th {
+        background-color: #007bff;
+        color: #fff;
+        text-align: left;
+        text-transform: uppercase;
+    }
 
-        .table-custom tbody tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
+    .table-custom tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
 
-        .table-custom tbody tr:hover {
-            background-color: #e9ecef;
-        }
+    .table-custom tbody tr:hover {
+        background-color: #e9ecef;
+    }
 
     .badge-custom {
-        font-size: 90%;
-        padding: 5px 10px;
-        border-radius: 12px;
-        background-color: #28a745;
+        font-size: 0.875rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background-color: #38a169;
         color: #fff;
+        margin-right: 0.5rem;
     }
 
     .action-icons a {
@@ -53,12 +54,12 @@
         transition: color 0.3s;
     }
 
-        .action-icons a i {
-            font-size: 20px;
-        }
+    .action-icons a i {
+        font-size: 20px;
+    }
 
     .edit-icon {
-        color: #007bff;
+        color: #0d6efd;
     }
 
     .delete-icon {
@@ -72,7 +73,6 @@
     .action-icons a:hover {
         color: #6c757d;
     }
-
     body {
         font-family: 'Roboto', sans-serif;
         background-color: #f8f9fa;
@@ -82,10 +82,6 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 15px;
-    }
-
-    .btn-danger:hover {
-        background-color: #c82333;
     }
 
     .table-container {
@@ -163,8 +159,12 @@
             </div>
         </div>
         <div class="btn-container">
-            <a class="btn btn-create" asp-area="" asp-controller="BlogPost" asp-action="CreateBlogPost"><i class="bi bi-plus-circle me-2"></i>CREATE POST</a>
+            <a asp-area="" asp-controller="BlogPost" asp-action="CreateBlogPost"
+               class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                Add Post<i class="bi bi-plus-circle-fill ms-2"></i>
+            </a>
         </div>
+        
     }
     else
     {

@@ -4,7 +4,6 @@ using Bloggie.Web.Repository.DatabaseContext;
 using Bloggie.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Controllers;
 public class BlogPostController(BlogService service, BloggieWebContext context) : Controller

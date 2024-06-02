@@ -6,7 +6,6 @@ namespace Bloggie.Web.Services
 {
     public static class Commonservice
     {
-        private static readonly Account account;
         public static string GetConnectionString()
         {
             var builder = new ConfigurationBuilder();
@@ -53,12 +52,10 @@ namespace Bloggie.Web.Services
                 DisplayName = files.FileName
             };
             var uploadResult = await client.UploadAsync(uploadParams);
-            if (uploadResult == null || uploadResult.StatusCode != HttpStatusCode.OK)
-            {
-                var errorMsg = uploadResult?.Error?.Message ?? "Unknown error occurred.";
-                throw new InvalidOperationException($"Cloudinary upload failed: {errorMsg}");
-            }
-            return uploadResult.SecureUrl.ToString();
+            if (uploadResult is { StatusCode: HttpStatusCode.OK })
+                return uploadResult.SecureUrl.ToString();
+            var errorMsg = uploadResult?.Error?.Message ?? "Unknown error occurred.";
+            throw new InvalidOperationException($"Cloudinary upload failed: {errorMsg}");
         }
 
     }

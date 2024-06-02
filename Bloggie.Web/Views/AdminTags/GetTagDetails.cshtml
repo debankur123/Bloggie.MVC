@@ -1,100 +1,166 @@
 ﻿@model List<Bloggie.Web.Models.Response.GetTags>
 @{
-    int SerialNo = 1;
+    var serialNo = 1;
 }
 <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMfJt8e1r+i1IHMTZ5O/m/VZ6ZO6fVEF+JUsxZB" crossorigin="anonymous" />
 <style>
     .table-custom {
-        border-collapse: separate;
-        border-spacing: 0 10px;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .table-custom th,
     .table-custom td {
-        padding: 10px;
-        border: 1px solid #dee2e6;
-        background-color: #f8f9fa;
-        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid #dee2e6;
+        font-weight: 500;
+        color: #212529;
     }
 
     .table-custom th {
-        background-color: #343a40;
+        background-color: #007bff;
         color: #fff;
+        text-align: left;
+        text-transform: uppercase;
     }
 
     .table-custom tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .table-custom tbody tr:hover {
         background-color: #e9ecef;
     }
 
-    .material-symbols-outlined {
-        font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
+    .badge-custom {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background-color: #38a169;
+        color: #fff;
+        margin-right: 0.5rem;
     }
 
-    .icon-hover {
-        transition: font-variation-settings 0.25s;
+    .action-icons a {
+        text-decoration: none;
+        margin-right: 10px;
+        transition: color 0.3s;
     }
 
-    .icon-hover : hover {
-        font-variation-settings:
-            'FILL': 1,
-            'WGHT': 200,
-            'GRAD': 0,
-            'opsz': 48
+    .action-icons a i {
+        font-size: 20px;
     }
+
+    .edit-icon {
+        color: #0d6efd;
+    }
+
+    .delete-icon {
+        color: #dc3545;
+    }
+
+    .view-icon {
+        color: #ffc107;
+    }
+
+    .action-icons a:hover {
+        color: #6c757d;
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .table-container {
+        position: relative;
+        margin-top: 20px;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 400px; /* Adjust as necessary */
+    }
+
+    .btn-container {
+        position: sticky;
+        bottom: 0;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: right;
+    }
+
 </style>
-
-<div class="bg-secondary bg-opacity-10 py-2 input-title mb-3">
+<div class="bg-secondary bg-opacity-10 py-2">
     <div class="container">
-        <h1 class="mb-6">Show Tags (Admin Panel)</h1>
+        <h1 class="mb-0 text-center">Show tags (Admin Panel)</h1>
     </div>
 </div>
 
 <div class="container py-5">
     @if (Model != null && Model.Any())
     {
-        <div class="table-responsive mt-5">
-            <table class="table table-striped table-bordered table-hover  text-center">
-                <thead class="button-submit">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
                     <tr>
                         <th>No</th>
                         <th>Tag Name</th>
                         <th>Display Name</th>
                         <th>Action Area</th>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var x in Model)
-                    {
-                        <tr>
-                            <td>@SerialNo</td>
-                            <td>@x.TagName</td>
-                            <td>@x.DisplayName</td>
-                            <td>
-                                <a asp-area="" asp-controller="AdminTags" asp-action="EditTags" asp-route-TagId="@x.TagId">
-                                    <span class="material-symbols-outlined text-success">
-                                        edit_square
-                                    </span>
-                                </a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="@("#DeleteProduct-" + x.TagId)" data-bs-url="@Url.Action($"DeleteTag/{x.TagId}")">
-                                    <span class="material-symbols-outlined text-danger">delete</span>
-                                </a>
-                                @await Html.PartialAsync("DeleteTag",x)
-                            </td>
-                        </tr>
-                        SerialNo++;
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td>@serialNo</td>
+                                <td>@x.TagName</td>
+                                <td>@x.DisplayName</td>
+                                <td class="action-icons">
+                                    <a asp-area="" asp-controller="AdminTags" asp-action="EditTags" asp-route-TagId="@x.TagId">
+                                        <i class="bi bi-pencil edit-icon"></i>
+                                    </a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="@("#DeleteProduct-" + x.TagId)" data-bs-url="@Url.Action($"DeleteTag/{x.TagId}")">
+                                        <i class="bi bi-trash delete-icon"></i>
+                                    </a>
+                                    @await Html.PartialAsync("DeleteTag",x)
+                                </td>
+                            </tr>
+                            serialNo++;
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <div class="btn-container">
+            <a asp-area="" asp-controller="AdminTags" asp-action="CreateTags"
+               class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                Add Tags<i class="bi bi-plus-circle-fill ms-2"></i>
+            </a>
+        </div>
+        
     }
     else
     {
-        <p class="text-muted text-center mt-5">Oops - No Tags to display!</p>
+        <h4>
+            <p class="text-muted text-center mt-5"><b>Oops - No Blogs to display!</b></p>
+        </h4>
     }
 </div>
 
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-x6MlryVmCqcO1hrBzACPrH6N2HpECFyMzjhsfS9vJE0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-CBQgW/1J+7mYRto20P7KoRMtr4xoXRwsj+Yfcvd9irB26BO/1+BSNxss5KICDDDa" crossorigin="anonymous"></script>
+}
