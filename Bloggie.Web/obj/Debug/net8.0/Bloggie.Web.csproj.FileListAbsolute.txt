@@ -149,6 +149,7 @@ D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Bloggie.Web.dll
 D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Bloggie.Web.pdb
 D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Azure.Core.dll
 D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Azure.Identity.dll
+D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\CloudinaryDotNet.dll
 D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Humanizer.dll
 D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll

@@ -18,8 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminBlogPost/CreateBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5CbG9nUG9zdFxDcmVhdGVCbG9nUG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/CreateTags.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXENyZWF0ZVRhZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/DeleteTag.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXERlbGV0ZVRhZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/EditTags.cshtml]
@@ -30,12 +38,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXEdldFRhZ0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/BlogDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQmxvZ0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/CreateBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQ3JlYXRlQmxvZ1Bvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/DeleteBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcRGVsZXRlQmxvZ1Bvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/EditBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcRWRpdEJsb2dQb3N0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/ViewBlogDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcVmlld0Jsb2dEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Shared/.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Shared/Error.cshtml]

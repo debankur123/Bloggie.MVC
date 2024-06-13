@@ -258,7 +258,8 @@ namespace Bloggie.Web.Services
                     };
                 }
                 idToDelete.Active = false;
-                var tagsToDelete = await webContext.BloggieMTags.Where(val => val.BlogHdrid == id && val.Active == true).ToListAsync();
+                var tagsToDelete = await webContext.BloggieMTags
+                    .Where(val => val.BlogHdrid == id && val.Active == true).ToListAsync();
                 var index = 0;
                 while (index < tagsToDelete.Count)
                 {

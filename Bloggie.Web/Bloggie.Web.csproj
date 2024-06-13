@@ -8,9 +8,11 @@
 
   <ItemGroup>
     <Content Include="Assets\edit_square_FILL0_wght400_GRAD0_opsz24.svg" />
+    <Content Remove="Views\BlogPost\DeleteBlog.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -29,6 +31,18 @@
     <Folder Include="Models\Entity\" />
     <Folder Include="Assets\" />
     <Folder Include="Repository\DatabaseContext\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\BlogPost\DeleteBlog.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\BlogPost\ViewBlogDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\BlogPost\ViewBlogDetails.cshtml" />
   </ItemGroup>
 
 </Project>
