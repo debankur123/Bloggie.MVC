@@ -6,6 +6,7 @@ namespace Bloggie.Web.Services
 {
     public static class Commonservice
     {
+        public static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
         public static string GetConnectionString()
         {
             var builder = new ConfigurationBuilder();
@@ -16,9 +17,8 @@ namespace Bloggie.Web.Services
         }
         public static DateTime GetIndianDatetime()
         {
-            var indianTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
-            var indianDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, indianTimeZone);
-            return indianDateTime;
+            var indianTime =  TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
+            return indianTime;
         }
         public static async Task<string> UploadToCloudinaryAsync(IFormFile files)
         {

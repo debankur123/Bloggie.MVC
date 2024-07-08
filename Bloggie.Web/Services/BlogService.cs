@@ -1,18 +1,20 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 using Bloggie.Web.Models;
 using Bloggie.Web.Models.Entity;
 using Bloggie.Web.Models.Request;
 using Bloggie.Web.Models.Response;
 using Bloggie.Web.Repository.DatabaseContext;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Services
 {
     public class BlogService(IConfiguration configuration, BloggieWebContext webContext)
     {
+        #region Declarations
         private readonly IConfiguration _configuration = configuration;
-        private static readonly char[] Separator = new[] { '$' };
+        private static readonly char[] Separator = ['$'];
+        #endregion
 
         public async Task<dynamic> CreateTags(TagRequest request)
         {
@@ -129,7 +131,7 @@ namespace Bloggie.Web.Services
                 blogToEdit.Author = request.Author;
                 blogToEdit.IsVisible = request.IsVisible;
                 blogToEdit.Active = true;
-                blogToEdit.UpdatedDate = Commonservice.GetIndianDatetime();
+                blogToEdit.UpdatedDate = null;
                 await webContext.SaveChangesAsync();
                 var existingTagOfBlog = await webContext.BloggieMTags
                     .Where(a => a.BlogHdrid == blogToEdit.Id && a.Active==true).ToListAsync();
