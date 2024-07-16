@@ -72,8 +72,8 @@ public class BlogPostController(BlogService service, BloggieWebContext context) 
             PublishedDateS = blogDetail?.PublishedDateS,
             Author = blogDetail?.Author ?? string.Empty,
             IsVisible = blogDetail?.IsVisible ?? false,
-            CreatedDate = blogDetail?.CreatedDate ?? (DateTime?)null,
-            UpdatedDate = blogDetail?.UpdatedDate ?? (DateTime?)null,
+            CreatedDate = blogDetail?.CreatedDate ?? null,
+            UpdatedDate = blogDetail?.UpdatedDate ?? null,
             Active = blogDetail?.Active ?? false,
             Tags = tags.Select(tag => new SelectListItem
                 {

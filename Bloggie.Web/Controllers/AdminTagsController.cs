@@ -58,15 +58,12 @@ namespace Bloggie.Web.Controllers
             var existingTag = await context.BloggieSTags.FirstOrDefaultAsync(x=>x.Id == TagId);
             try
             {
-                if (existingTag != null)
-                {
-                    existingTag.Name = request.Name;
-                    existingTag.DisplayName = request.DisplayName;
-                    existingTag.Active = true;
-                    await context.SaveChangesAsync();
-                    return RedirectToAction("GetTagDetails");
-                }
-                return RedirectToAction("EditTags", new { TagId = TagId });
+                if (existingTag == null) return RedirectToAction("EditTags", new { TagId = TagId });
+                existingTag.Name = request.Name;
+                existingTag.DisplayName = request.DisplayName;
+                existingTag.Active = true;
+                await context.SaveChangesAsync();
+                return RedirectToAction("GetTagDetails");
             }
             catch (Exception ex)
             {
