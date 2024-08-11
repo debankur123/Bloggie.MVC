@@ -1,4 +1,6 @@
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 
@@ -17,7 +19,7 @@ namespace Bloggie.Web.Services
         }
         public static DateTime GetIndianDatetime()
         {
-            var indianTime =  TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
+            var indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
             return indianTime;
         }
         public static async Task<string> UploadToCloudinaryAsync(IFormFile files)
@@ -30,7 +32,7 @@ namespace Bloggie.Web.Services
             builder.AddJsonFile("appsettings.json");
             var config = builder.Build();
             var cloudName = config.GetSection("Cloudinary")["CloudName"];
-            var apiKey    = config.GetSection("Cloudinary")["ApiKey"];
+            var apiKey = config.GetSection("Cloudinary")["ApiKey"];
             var apiSecret = config.GetSection("Cloudinary")["ApiSecret"];
             if (string.IsNullOrEmpty(cloudName))
             {
@@ -57,6 +59,32 @@ namespace Bloggie.Web.Services
             var errorMsg = uploadResult?.Error?.Message ?? "Unknown error occurred.";
             throw new InvalidOperationException($"Cloudinary upload failed: {errorMsg}");
         }
+        // --------------------------- Password Hashing-----------------------------------
+        public static (string Hash, string Salt) HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var salt = GenerateSalt();
+            var saltedPassword = password + salt;
+            var hash = Convert.ToBase64String(sha256.ComputeHash(Encoding.UTF8.GetBytes(saltedPassword)));
+            return (Hash: hash, Salt: salt);
+        }
+
+        private static string GenerateSalt()
+        {
+            var saltBytes = new byte[16];
+            RandomNumberGenerator.Fill(saltBytes);
+            return Convert.ToBase64String(saltBytes);
+        }
+        public static bool VerifyPasswordHash(string password, string storedHash, string storedSalt)
+        {
+            // Recompute hash using provided password and stored salt
+            using var sha256 = SHA256.Create();
+            var saltedPassword = password + storedSalt;
+            var computedHash = Convert.ToBase64String(sha256.ComputeHash(Encoding.UTF8.GetBytes(saltedPassword)));
+            // Compare computed hash with stored hash
+            return computedHash.Equals(storedHash, StringComparison.Ordinal);
+        }
+
 
     }
 }

@@ -9,4 +9,4 @@
       }
     }
 
-dotnet ef DbContext Scaffold "Server=localhost,1433;Database=BloggieWeb;User=SA;Password=Em@012173;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --context-dir  Repository/DatabaseContext --output-dir Models/Entity --force
+dotnet ef DbContext Scaffold "Server=localhost,1433;Database=BloggieWeb;User=SA;Password=Em@012173;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --context-dir  Context --output-dir Models/Entity --force

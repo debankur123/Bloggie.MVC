@@ -1,0 +1,62 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER   PROC [dbo].[USP_Blogging_G_BlogDetails] (@BlogId BIGINT = NULL) AS BEGIN
+SET
+NOCOUNT
+  ON;
+
+SELECT DISTINCT
+  Id = ISNULL(Dtl.Id, 0),
+  Heading = ISNULL(Dtl.Heading, ''),
+  PageTitle = ISNULL(dtl.PageTitle, ''),
+  Content = ISNULL(Dtl.Content, ''),
+  ShortDescription = ISNULL(Dtl.ShortDescription, ''),
+  BlogImageUrl = ISNULL(dtl.BlogImageURL, ''),
+  UrlHandle = ISNULL(dtl.UrlHandle, ''),
+  PublishedDate = ISNULL(Dtl.PublishedDate, ''),
+  PublishedDateS = CONVERT(VARCHAR, ISNULL(dtl.PublishedDate, ''), 105),
+  Author = ISNULL(dtl.Author, ''),
+  IsVisible = ISNULL(Dtl.IsVisible, 0),
+  TagNames = ISNULL(
+    STUFF(
+      (
+        SELECT DISTINCT
+          '$' + t.[Name]
+        FROM
+          Bloggie_M_Tags Tags
+        WITH
+          (NOLOCK)
+          INNER JOIN [Bloggie-S-Tags] T
+        WITH
+          (NOLOCK) ON Tags.TagId = T.Id
+          AND T.Active = 1
+        WHERE
+          Tags.BlogHDRId = Dtl.Id
+          AND Tags.Active = 1 FOR XML PATH (''),
+        TYPE
+      ).value ('.', 'NVARCHAR(MAX)'),
+      1,
+      1,
+      ''
+    ),
+    ''
+  ),
+  CreatedDate = ISNULL(dtl.CreatedDate, ''),
+  CreatedDateS = CONVERT(varchar, ISNULL(dtl.CreatedDate, ''), 105),
+  UpdatedDate = ISNULL(dtl.UpdatedDate, ''),
+  UpdatedDateS = CONVERT(varchar, ISNULL(dtl.UpdatedDate, ''), 105)
+FROM
+  Bloggie_T_BlogDTL Dtl
+WITH
+  (NOLOCK)
+WHERE
+  DTL.Active = 1
+  AND (
+    ISNULL(@BlogId, 0) = 0
+    OR ISNULL(DTL.Id, 0) = @BlogId
+  )
+END
+GO
+-------------------------------------------------------------------------------

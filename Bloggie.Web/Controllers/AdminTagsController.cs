@@ -2,11 +2,13 @@
 using Bloggie.Web.Models.Request;
 using Bloggie.Web.Repository.DatabaseContext;
 using Bloggie.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Controllers
 {
+    [Authorize]
     public class AdminTagsController(BlogService service, BloggieWebContext context) : Controller
     {
         [HttpGet]
@@ -70,7 +72,10 @@ namespace Bloggie.Web.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
         [HttpGet]
+        [Route("GetTagDetails")]
+        
         public async Task<IActionResult> GetTagDetails(long? Id=0){
             var tags = await service.GetTags(Id);
             return View(tags);

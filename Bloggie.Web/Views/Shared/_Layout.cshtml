@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,61 +10,84 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Bloggie.Web.styles.css" asp-append-version="true" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' /><script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet'
+        type='text/css' />
+    <script type='text/javascript'
+        src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 </head>
+
 <body>
-<header>
-    <nav class="bg-dark border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-        <div class="max-w-screen-xl flex items-center justify-between mx-auto p-2">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-6" alt="Flowbite Logo" />
-                <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Bloggie.Web</span>
-            </a>
-            <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-8 h-8 justify-center text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                </svg>
-            </button>
-            <div class="hidden w-full md:flex md:w-auto" id="navbar-dropdown">
-                <ul class="flex flex-col font-medium p-2 md:p-0 mt-2 rounded-lg bg-gray-50 md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    
-                    <li class="relative">
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-1 px-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                            <i class="bi bi-person-workspace me-2"></i>Admin Workspace
-                            <svg class="w-2 h-2 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    <header>
+        <nav class="bg-dark py-2">
+            <div class="max-w-screen-xl flex justify-between items-center mx-auto px-4">
+                <a href="#" class="flex items-center space-x-3">
+                    <img src="~/Assets/Logo.png" class="h-6" alt="Flowbite Logo" />
+                    <span class="text-lg font-semibold text-white">Bloggie.Web</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <!-- Admin Workspace Dropdown -->
+                    <div class="relative">
+                        <button id="dropdownNavbarLink" class="flex items-center text-white hover:text-blue-500">
+                            <i class="bi bi-person-workspace mr-2"></i>Admin Workspace
+                            <svg class="ml-1 w-4 h-4" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 1l4 4 4-4" />
                             </svg>
                         </button>
                         <!-- Dropdown menu -->
-                        <div id="dropdownNavbar" class="absolute left-0 z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-32 mt-1 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownNavbarLink">
+                        <div id="dropdownNavbar"
+                            class="absolute left-0 mt-2 hidden bg-white rounded-lg shadow-lg dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
                                 <li>
-                                    <a class="block px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" asp-area="" asp-controller="AdminTags" asp-action="GetTagDetails"><i class="bi bi-info-circle-fill me-2"></i>Tag Details</a>
+                                    <a asp-area="" asp-controller="AdminTags" asp-action="GetTagDetails"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Tag Details</a>
                                 </li>
                                 <li>
-                                    <a class="block px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" asp-area="" asp-controller="BlogPost" asp-action="BlogDetails"><i class="bi bi-card-text me-2"></i>Blog Posts</a>
+                                    <a asp-area="" asp-controller="BlogPost" asp-action="BlogDetails"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Blog Posts</a>
                                 </li>
                             </ul>
-                            <div class="py-1">
-                                <a href="#" class="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out<i class="bi bi-box-arrow-right ms-2"></i></a>
-                            </div>
                         </div>
-                    </li>
-                    
-                    
-                    <li>
-                        <a href="#" class="block py-1 px-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="bi bi-file-person-fill me-2"></i>Contact</a>
-                    </li>
-                </ul>
+                    </div>
+                    <!-- Contact -->
+                    <a href="#" class="text-white hover:text-blue-500 flex items-center">
+                        <i class="bi bi-file-person-fill mr-2"></i>Contact
+                    </a>
+                    <!-- Authentication Buttons -->
+                    @if (Context.Request.Cookies["UserEmail"] != null)
+                    {
+                        <div class="flex items-center space-x-3">
+                            <span class="text-white">Hello, @Context.Request.Cookies["UserEmail"]!</span>
+                            <form asp-controller="Auth" asp-action="Logout" method="post" id="logoutForm"
+                                style="display: inline;">
+                                <button type="submit"
+                                    class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+                                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                </button>
+                            </form>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Auth" asp-action="Register"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center">
+                            <i class="bi bi-person-plus mr-2"></i>SignUp
+                        </a>
+                        <a asp-area="" asp-controller="Auth" asp-action="Login"
+                            class="ml-2 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 flex items-center">
+                            <i class="bi bi-box-arrow-in-right mr-2"></i>SignIn
+                        </a>
+                    }
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
-
-<div>
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -74,45 +98,44 @@
             &copy; 2024 - Bloggie.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    clifford: '#da373d',
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
                 }
             }
         }
-    }
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the dropdown button
-        const dropdownButton = document.getElementById("dropdownNavbarLink");
-        // Get the dropdown menu
-        const dropdownMenu = document.getElementById("dropdownNavbar");
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownButton = document.getElementById("dropdownNavbarLink");
+            const dropdownMenu = document.getElementById("dropdownNavbar");
 
-        // Add click event listener to the dropdown button
-        dropdownButton.addEventListener("click", function() {
-            // Toggle the 'hidden' class on the dropdown menu to show/hide it
-            dropdownMenu.classList.toggle("hidden");
+            dropdownButton.addEventListener("click", function (e) {
+                e.stopPropagation();
+                dropdownMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function () {
+                if (!dropdownMenu.classList.contains("hidden")) {
+                    dropdownMenu.classList.add("hidden");
+                }
+            });
         });
-
-        // Close the dropdown menu if user clicks outside of it
-        document.addEventListener("click", function(event) {
-            if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
-                dropdownMenu.classList.add("hidden");
-            }
-        });
-    });
-
-</script>
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
+    
+
 </body>
+
 </html>
