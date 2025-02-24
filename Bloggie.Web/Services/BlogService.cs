@@ -41,12 +41,14 @@ namespace Bloggie.Web.Services
             await con.OpenAsync();
             try
             {
-                SqlCommand cmd = new SqlCommand("USP_BLOGGIE_G_GetTags", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new("USP_BLOGGIE_G_GetTags", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 cmd.Parameters.AddWithValue("@TagId", TagId);
                 List<GetTags> tagsList = [];
                 var dt = new DataTable();
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                SqlDataAdapter sda = new(cmd);
                 sda.Fill(dt);
                 // tagsList.AddRange(from DataRow row in dt.Rows select new GetTags { TagId = (long)row["TagId"], TagName = row["TagName"].ToString(), DisplayName = row["DisplayName"].ToString(), Active = (bool)row["Active"] });
                 // return tagsList;
@@ -213,7 +215,7 @@ namespace Bloggie.Web.Services
                 };
                 cmd.Parameters.AddWithValue("@BlogId", BlogId);
                 var reader = await cmd.ExecuteReaderAsync();
-                var blogDetailsList = new List<BlogDetailsResponse>();
+                List<BlogDetailsResponse> blogDetailsList = [];
                 if (!reader.HasRows) return blogDetailsList;
                 while (await reader.ReadAsync())
                 {

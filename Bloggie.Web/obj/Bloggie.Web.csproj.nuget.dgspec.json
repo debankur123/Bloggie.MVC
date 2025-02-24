@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Bloggie-Git\\Bloggie.MVC\\Bloggie.Web\\Bloggie.Web.csproj": {}
+    "/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Bloggie.Web.csproj": {}
   },
   "projects": {
-    "D:\\Bloggie-Git\\Bloggie.MVC\\Bloggie.Web\\Bloggie.Web.csproj": {
+    "/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Bloggie.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Bloggie-Git\\Bloggie.MVC\\Bloggie.Web\\Bloggie.Web.csproj",
+        "projectUniqueName": "/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Bloggie.Web.csproj",
         "projectName": "Bloggie.Web",
-        "projectPath": "D:\\Bloggie-Git\\Bloggie.MVC\\Bloggie.Web\\Bloggie.Web.csproj",
-        "packagesPath": "C:\\Users\\bhatt\\.nuget\\packages\\",
-        "outputPath": "D:\\Bloggie-Git\\Bloggie.MVC\\Bloggie.Web\\obj\\",
+        "projectPath": "/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Bloggie.Web.csproj",
+        "packagesPath": "/home/debankur/.nuget/packages/",
+        "outputPath": "/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bhatt\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/debankur/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -50,9 +42,21 @@
               "target": "Package",
               "version": "[1.26.2, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.4, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -74,9 +78,17 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
             }
           },
           "imports": [
@@ -98,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300-preview.24203.14/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

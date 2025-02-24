@@ -9,83 +9,91 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Bloggie.Web
 build_property.RootNamespace = Bloggie.Web
-build_property.ProjectDir = D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web\
+build_property.ProjectDir = /home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Bloggie-Git\Bloggie.MVC\Bloggie.Web
+build_property.MSBuildProjectDirectory = /home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminBlogPost/CreateBlogPost.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5CbG9nUG9zdFxDcmVhdGVCbG9nUG9zdC5jc2h0bWw=
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/AdminBlogPost/CreateBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5CbG9nUG9zdC9DcmVhdGVCbG9nUG9zdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/CreateTags.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXENyZWF0ZVRhZ3MuY3NodG1s
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/AdminTags/CreateTags.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5UYWdzL0NyZWF0ZVRhZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/DeleteTag.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXERlbGV0ZVRhZy5jc2h0bWw=
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/AdminTags/DeleteTag.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5UYWdzL0RlbGV0ZVRhZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/EditTags.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXEVkaXRUYWdzLmNzaHRtbA==
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/AdminTags/EditTags.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5UYWdzL0VkaXRUYWdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/AdminTags/GetTagDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdzXEdldFRhZ0RldGFpbHMuY3NodG1s
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/AdminTags/GetTagDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5UYWdzL0dldFRhZ0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/BlogDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQmxvZ0RldGFpbHMuY3NodG1s
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/CreateBlogPost.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQ3JlYXRlQmxvZ1Bvc3QuY3NodG1s
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/DeleteBlogPost.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcRGVsZXRlQmxvZ1Bvc3QuY3NodG1s
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/BlogPost/BlogDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZ1Bvc3QvQmxvZ0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/EditBlogPost.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcRWRpdEJsb2dQb3N0LmNzaHRtbA==
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/BlogPost/CreateBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZ1Bvc3QvQ3JlYXRlQmxvZ1Bvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/BlogPost/ViewBlogDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcVmlld0Jsb2dEZXRhaWxzLmNzaHRtbA==
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/BlogPost/DeleteBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZ1Bvc3QvRGVsZXRlQmxvZ1Bvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/BlogPost/EditBlogPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZ1Bvc3QvRWRpdEJsb2dQb3N0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/BlogPost/ViewBlogDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZ1Bvc3QvVmlld0Jsb2dEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Shared/.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXC5jc2h0bWw=
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Shared/.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkLy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Bloggie-Git/Bloggie.MVC/Bloggie.Web/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-n1e1qfg7ad
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/debankur/MyWorkSpace/BloggieMVC/Bloggie.MVC/Bloggie.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-dww18lclp7

@@ -4,8 +4,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Bloggie.Web.Models.Auth;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Bloggie.Web.Services
@@ -32,7 +30,7 @@ namespace Bloggie.Web.Services
             {
                 CommandType = CommandType.StoredProcedure
             };
-            command.Parameters.AddWithValue("@UserId",   model.Email);
+            command.Parameters.AddWithValue("@UserId", model.Email);
             command.Parameters.AddWithValue("@Password", model.Password);
             command.Parameters.AddWithValue("@UserName", model.UserName);
             await connection.OpenAsync();

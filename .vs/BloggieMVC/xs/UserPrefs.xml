@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{F6AE0E5D-0B0B-4CFA-B1AD-F5C33DA42A6E}|Default">
+  <MonoDevelop.Ide.ItemProperties.Bloggie.Web PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bloggie.Web/Services/Commonservice.cs">
+    <Files>
+      <File FileName="Bloggie.Web/Services/Commonservice.cs" Line="9" Column="57" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BloggieMVC" expanded="True">
+            <Node name="Bloggie.Web" expanded="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Commonservice.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
